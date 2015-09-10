@@ -5,6 +5,7 @@ class Spider:
     def __init__(self):
         print('start...: \n')
 
+#获取所有连接（不止爬一页）
     def setLinkList(self, url, end):
         links = []
         page = int(re.search('pageNum=(\d)', url, re.S).group(1))
@@ -13,14 +14,17 @@ class Spider:
            links.append(link)
         return links
 
+#获得网页源代码
     def getSource(self, url):
         html = requests.get(url)
         return html
 
+#获取页面的课程块
     def getCourse(self, html):
         course = re.findall('<li id="\d{4}" test="[01]" deg="[01]".*?>(.*?)</li>', html.text, re.S)
         return course
 
+#获取每个课程块的课程详细信息
     def getContent(self, course):
         info = {}
         reg_title = '<h2 class="lesson-info-h2"><a.*?>(.*?)</a></h2>'
@@ -35,6 +39,7 @@ class Spider:
         info['people'] = re.search(reg_people, course, re.S).group(1)
         return info
 
+#将获取的课程信息保存到文件中
     def saveFile(self, classInfo):
         f = open('result.txt', 'a')
         for info in classInfo:

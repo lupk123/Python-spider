@@ -3,6 +3,6 @@
 > 
 getAttention.py 爬的是许嵩关注的人
 > 
-update_weibo.py 那我自己的账号练手，定时获取更新内容
+update_weibo.py 拿我自己的账号练手，定时获取更新内容
 > 
 这两个程序的功能都必须在登陆的状态下才能实现~~
